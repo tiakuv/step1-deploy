@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+    {% block container %}
+
+    <h1 class="display-5 mt-4">Летим {{ departures[departure].replace("Из", "из") }}</h1>
+    <p class="mb-4">Найдено {{ tours_count }} {% if tours_count%10 == 1 %} тур{% elif tours_count%10 in (2, 3, 4) %} тура{% else %} туров{% endif %},
+      от {{ min_price }} руб. до {{ max_price }} руб. и от {{ min_days }} до {{ max_days }} ночей</p>
+    <!-- CARDS -->
+    <div class="row mt-5">
+      {% for ind, tour in selected_tours.items() %}
+      <div class="col-4">
+        <div class="card mb-4">
+          <div class="embed-responsive embed-responsive-16by9">
+             <img class="card-img-top embed-responsive-item" height="800" src="{{ tour.picture }}" alt="..." />
+          </div>
+          <div class="card-body">
+            <h2 class="h5 card-title">{{ tour.title }}</h2>
+            <p class="card-text">{{ tour.description|truncate(100) }}</p>
+            <a href="/tours/{{ ind }}" class="btn btn-sm btn-primary">Подробнее</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+   {% endblock %}
