@@ -40,4 +40,5 @@ def show_tour(id):
     output = render_template("tour.html", departures=departures, title=title, tour=tour)
     return output
 
-app.run('localhost', 8000)
+if __name__ == '__main__':
+    app.run()
